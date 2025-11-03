@@ -33,7 +33,7 @@ dask-gateway:
         c.Backend.cluster_options = Options(
           Integer("worker_cores", default=1, min=1, max=8, label="Worker Cores"),
           Float("worker_memory", default=2, min=2, max=32, label="Worker Memory (GiB)"),
-          String("image", default="quay.io/pangeo/pangeo-notebook:2025.06.02", label="Image"),
+          String("image", default="quay.io/pangeo/pangeo-notebook:latest", label="Image"),
           handler=options_handler,
         )
     prefix: /services/dask-gateway
@@ -206,6 +206,8 @@ jupyterhub:
       guarantee: 1
       limit: 8
     defaultUrl: /lab
+    image:
+      pullPolicy: Always
     profileList:
       - display_name: Choose your environment
         slug: only-choice
